@@ -17,7 +17,7 @@ More often than not the access required by those outside NetOps is only read-onl
 CURRENT RELEASE TAG
 -------------------
 
-  * v1.0.0
+  * 1.0
 
 
 REQUIREMENTS
