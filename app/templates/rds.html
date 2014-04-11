@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 10px">
+    <h2><img src="/static/img/aws/rds.png"> Relational Database Service</h2>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="info">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hostname</th>
+            <th>Port</th>
+            <th>Engine</th>
+            <th>Storage</th>
+            <th>Zone</th>
+            <th>Multi-AZ</th>
+            <th>IOPs</th>
+            <th>Groups</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for db in db_instances %}
+        <tr>
+            <td>{{ db.id }}</td>
+            <td>{{ db.endpoint[0] }}</a></td>
+            <td>{{ db.endpoint[1] }}</td>
+            <td>{{ db.engine }}</td>
+            <td>{{ db.allocated_storage }}</td>
+            <td>{{ db.availability_zone }}</td>
+            <td>{{ db.multi_az }}</td>
+            <td>{{ db.iops }}</td>
+            <td>{% for group in db.vpc_security_groups %}
+                <a href="/{{current_account}}/{{current_region}}/sg/{{ group.vpc_group }}">{{ group.vpc_group }}</a><br>
+            {% endfor %}</td>
+            <td>{{ db.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>      
+</div>
+{% endblock %}

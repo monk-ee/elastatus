@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 10px">
+    <h2><img src="/static/img/aws/ec2.png"> Elastic Cloud Compute</h2>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="info">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Public DNS</th>
+            <th>Public IP</th>
+            <th>Private IP</th>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Zone</th>
+            <th>Groups</th>
+            <th>State</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for instance in instances %}
+        <tr>
+            <td>{{instance.tags['Name']}}</td>
+            <td><a href="ssh://{{ instance.public_dns_name }}">{{ instance.public_dns_name }}</a></td>
+            <td>{{ instance.ip_address }}</td>
+            <td>{{ instance.private_ip_address }}</td>
+            <td>{{ instance.id }}</td>
+            <td>{{ instance.instance_type }}</td>
+            <td>{{ instance.placement }}</td>
+            <td>{% for group in instance.groups %}
+                <a href="/{{current_account}}/{{current_region}}/sg/{{ group.id }}">{{ group.id }}</a><br>
+            {% endfor %}</td>
+            <td>{{ instance.state }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>      
+</div>
+{% endblock %}

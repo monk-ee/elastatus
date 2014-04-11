@@ -1,0 +1,29 @@
+accounts:
+    account1:
+        aws_access_key_id: 'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+        aws_secret_access_key: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    account2:
+        aws_access_key_id: 'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+        aws_secret_access_key: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    account3:
+        aws_access_key_id: 'XXXXXXXXXXXXXXXXXXXXXXXXXX'
+        aws_secret_access_key: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+
+regions: ['eu-west-1','us-east-1']
+
+aws: 
+    compute: ['ec2', 'ebs','elb', 'autoscale']
+    database: ['rds','dynamodb', 'elasticache']
+    deployments: ['cloudformation']
+    services: ['route53', 'sqs', 'sns']
+
+
+default_account: 'account1'
+default_region: 'eu-west-1'
+default_service: 'ec2'
+
+
+route53:
+    account: 'account1'
+    domain: 'mydomain'
+    zone_id: 'myzoneid'

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 10px">
+    <h2><img src="/static/img/aws/sqs.png"> Simple Queue Service</h2>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="info">
+    <thead>
+        <tr>
+            <th>ARN</th>
+            <th>URL</th>
+            <th>Available</th>
+            <th>In Flight</th>
+            <th>Retention (seconds)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for q in queues %}
+        <tr>
+            <td>{{ q.QueueArn }}</td>
+            <td>{{ q.url }}</a></td>
+            <td>{{ q.ApproximateNumberOfMessages }}</td>
+            <td>{{ q.ApproximateNumberOfMessagesNotVisible }}</td>
+            <td>{{ q.MessageRetentionPeriod }}</td>            
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>      
+{% endblock %}
+
+

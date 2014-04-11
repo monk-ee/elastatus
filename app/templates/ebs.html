@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 10px">
+    <h2><img src="/static/img/aws/ebs.png"> Elastic Block Storage</h2>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="info">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>ID</th>
+            <th>Size GB</th>
+            <th>IOPS</th>
+            <th>Attachment State</th>
+            <th>Zone</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in volumes %}
+        <tr>
+            <td>{{ v.tags['Name'] }}</td>
+            <td>{{ v.id }}</td>
+            <td>{{ v.size }}
+            <td>{{ v.iops }}</td>
+            <td>{{ v.attachment_state() }}</td>
+            <td>{{ v.zone }}</td>
+            <td>{{ v.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>      
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 10px">
+    <h2><img src="/static/img/aws/dynamodb.png"> DynamoDB</h2>
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="info">
+    <thead>
+        <tr>
+            <th>Name</td>
+            <th>Reads</th>
+            <th>Writes</th>
+            <th>Size in Bytes</th>
+            <th>Key Schema</th>
+            <th>Item Count</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for t in tables %}
+        <tr>
+            <td>{{ t.Table.TableName }}</td>
+            <td>{{ t.Table.ProvisionedThroughput.ReadCapacityUnits }}</td>
+            <td>{{ t.Table.ProvisionedThroughput.WriteCapacityUnits }}</td>
+            <td>{{ t.Table.TableSizeBytes }}</td>
+            <td>{% set schema = t.Table.KeySchema %}
+                {% for i in schema %}
+                {{ i }} : {{ schema[i].AttributeName }}<br>
+                {% endfor %}</td>
+            <td>{{ t.Table.ItemCount }}</td>
+            <td>{{ t.Table.TableStatus }}</td>   
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>      
+{% endblock %}
